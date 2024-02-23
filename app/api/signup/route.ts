@@ -10,8 +10,8 @@ export async function POST(request:Request){
         [json.username]
     );
 
-    if(res.rowCount > 0){
-        return NextResponse.json({error: "User already exists"})
+    if (res && res.rowCount! > 0){
+        return NextResponse.json({error: "User already exists"}, {status: 401})
     }
 
     const saltRounds = 10;

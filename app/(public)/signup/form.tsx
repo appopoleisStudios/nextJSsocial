@@ -6,17 +6,29 @@ function Form() {
   const router = useRouter();
   const [username, setUsername] = useState<undefined | string>("");
   const [password, setPassword] = useState<undefined | string>("");
+  const [confirmPassword, setConfirmPassword] = useState<undefined | string>(
+    ""
+  );
+  const [errors, setErrors] = useState<string[]>([]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const res = await fetch("/api/login", {
+    setErrors([]);
+
+    if (password != confirmPassword) {
+      errors.push("Passwords do not match");
+      console.log(errors);
+      return;
+    }
+
+    const res = await fetch("/api/signup", {
       method: "POST",
       body: JSON.stringify({ username, password }),
     });
     if (res.ok) {
-      router.push("/feed");
+      window.location.href = "/signin";
     } else {
-      alert("Log In Failed");
+      alert("Sign Up Failed");
     }
   }
 
@@ -26,7 +38,7 @@ function Form() {
       className="flex flex-col gap-2 p-5 max-w-xs w-full bg-slate-800 rounded-lg"
     >
       <div className="text-center">
-        <h3 className="font-semibold">Sign In</h3>
+        <h3 className="font-semibold">Sign Up</h3>
       </div>
       <div className="my-3">
         <hr />
@@ -59,11 +71,24 @@ function Form() {
           required
         />
       </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          className="text-black p-3 border border-slate-700 rounded-lg"
+          type="password"
+          value={confirmPassword}
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+      </div>
       <button
         type="submit"
         className="mt-4 bg-slate-900 text-white p-3 rounded-lg"
       >
-        Sign In
+        Sign Up
       </button>
     </form>
   );
