@@ -14,7 +14,7 @@ export default function Navbar() {
           <Link href="/following">Following</Link>
         </li>
         <li>
-          <Link href="/followers">Followerss</Link>
+          <Link href="/followers">Followers</Link>
         </li>
       </ul>
     </nav>
