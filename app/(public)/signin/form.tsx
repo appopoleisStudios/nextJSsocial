@@ -59,10 +59,7 @@ function Form() {
           required
         />
       </div>
-      <button
-        type="submit"
-        className="mt-4 bg-slate-900 text-white p-3 rounded-lg"
-      >
+      <button type="submit" className="mt-4 bg-slate-900 p-3 rounded-lg">
         Sign In
       </button>
     </form>

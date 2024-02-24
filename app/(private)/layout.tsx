@@ -13,7 +13,7 @@ export default function PrivateLayout({
 }) {
   return (
     <SWRConfig value={{ fetcher: fetcher }}>
-      <div className="bg-black text-white min-h-screen">
+      <div>
         <Header />
         <Navbar />
         <main>{children}</main>
