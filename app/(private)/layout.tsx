@@ -8,7 +8,7 @@ export default function PrivateLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="bg-black text-white min-h-screen">
       <Header />
       <Navbar />
       <main>{children}</main>
